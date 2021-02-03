@@ -1,0 +1,37 @@
+﻿@model HomeViewModel
+
+<form class="ui form" asp-action="UploadImage" enctype="multipart/form-data">
+    <div class="three fields">
+        <div class="field">
+            <label>Tytuł</label>
+            <input asp-for="Upload.Title" />
+        </div>
+        <div class="field">
+            <label>Opis</label>
+            <input asp-for="Upload.Description" />
+        </div>
+        <div class="field">
+            <label>Zdjęcie</label>
+            <input id="file-upload" asp-for="Upload.File" accept="image/jpg, image/png" />
+        </div>
+    </div>
+
+    <button id="submit-button" class="ui primary basic button" type="submit">Upload</button>
+</form>
+
+<div class="ui cards">
+    @foreach (var image in Model.Images)
+    {
+    <div class="ui card">
+        <div class="image">
+            <img src="@image.ImageUrl">
+        </div>
+        <div class="content">
+            <a class="header">@image.Title</a>
+            <div class="description">
+                @image.Description
+            </div>
+        </div>
+    </div>
+    }
+</div>
